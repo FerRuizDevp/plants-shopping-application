@@ -1,17 +1,17 @@
 import React, { useState,useEffect } from 'react';
 import './ProductList.css'
+import { useDispatch } from 'react-redux'; // Import useDispatch
 import CartItem from './CartItem';
 import addItem  from './CartSlice';
 
 function ProductList() {
     const [showCart, setShowCart] = useState(false); 
-    
-    const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
+    const [showPlants, setShowPlants] = useState(true); // State to control the visibility of the About Us page
+    const dispatch = useDispatch();
 
-    const [addedToCart, setAddedToCart] = useState({ item }) 
-        const dispatch = useDispatch();
 
     const handleAddToCart = (product) => {
+        dispatch({ type: 'ADD_ITEM', payload: product });
         dispatch(addItem(product));
         setAddedToCart((prevState) => ({
            ...prevState,
@@ -24,11 +24,16 @@ function ProductList() {
     };
     
     const cartReducer = (state = initialState, action) => {
-        switch (action.type) {
-            default:
-                return state;
-        }
-    };
+    switch (action.type) {
+        case 'ADD_ITEM':
+            return {
+                ...state,
+                cartItems: [...state.cartItems, action.payload]
+            };
+        default:
+            return state;
+    }
+};
 
     const plantsArray = [
         {
@@ -308,7 +313,7 @@ const handlePlantsClick = (e) => {
                             <div className="product-title">{plant.name}</div>
                             {/*Similarly like the above plant.name show other details like description and cost*/}
                             <button  className="product-button" onClick={() => handleAddToCart(plant)}>Add to Cart</button>
-                            <button onClick={handleRemove}>Remove from Cart</button>
+                            {/*<button onClick={() => handleRemove(cartReducer)}>Remove  Cart</button>*/}
 
                         </div>
                         ))}
