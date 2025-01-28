@@ -9,23 +9,8 @@ function ProductList() {
     const [showPlants, setShowPlants] = useState(false); // State to control the visibility of the About Us page
     const [addedToCart, setAddedToCart] = useState({}); // To track which products are added to cart
     const cart = useSelector((state) => state.cart);
-    const dispatch = useDispatch();
-
-    /*const initialState = {
-        CartItem: []
-    };
     
-    const cartReducer = (state = initialState, action) => {
-    switch (action.type) {
-        case 'ADD_ITEM':
-            return {
-                ...state,
-                cartItems: [...state.cartItems, action.payload]
-            };
-        default:
-            return state;
-        }
-    };*/
+    const dispatch = useDispatch();    
 
     const plantsArray = [
         {

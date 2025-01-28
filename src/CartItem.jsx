@@ -7,7 +7,6 @@ const CartItem = ({ onContinueShopping }) => {
     const cart = useSelector(state => state.cart.items);
     const dispatch = useDispatch();
 
-
     const parseItemCostToInteger = (itemCost) => {
         /*
             Remove currency symbol before multiplication.
@@ -68,7 +67,6 @@ const CartItem = ({ onContinueShopping }) => {
 
         return totalCost;
       };
-
 
 
       return (
